@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TitleStrategy } from '@angular/router';
 import { candidate, candidateCount } from '../Models/candidate';
 import { VoteService } from '../vote.service';
 
@@ -11,10 +12,10 @@ import { VoteService } from '../vote.service';
 export class HomeComponent {
   baseUrl: string = 'https://localhost:44319/';
   users: candidate[] = [];
-  count: candidateCount ={
+  count: candidateCount = {
     id: 0,
-    count: 0
-  }
+    count: 0,
+  };
   user: candidate = {
     id: 0,
     candidateName: '',
@@ -23,13 +24,14 @@ export class HomeComponent {
   };
   registerForm!: FormGroup;
   countForm!: FormGroup;
+  res: any;
   constructor(private http: VoteService, private formBuilder: FormBuilder) {
     this.registerForm = this.formBuilder.group({
       candidateName: ['', Validators.required],
       party: ['', Validators.required],
     });
     this.countForm = this.formBuilder.group({
-      count: ['', Validators.required]
+      id: ['', Validators.required],
     });
   }
   ngOnInit(): void {
@@ -50,15 +52,19 @@ export class HomeComponent {
     });
   }
   Count() {
+    console.log('$$', this.countForm.value);
     this.count = this.countForm.value;
+    this.countForm.value.id = parseInt(this.countForm.value.id);
+    console.log(this.countForm.value);
     console.log(this.count, ' CHECKING COUNT');
-    this.http.Vote(this.user).subscribe((res: any) => {
-      
-      this.count = res;
-
+    this.http.Vote(this.countForm.value).subscribe((res: any) => {
+      this.res = res;
       alert(res.message);
       this.countForm.reset();
-      // window.location.reload();
+
+      if (this.res.code === 0) {
+        window.location.reload();
+      }
     });
   }
 }

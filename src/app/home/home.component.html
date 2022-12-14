@@ -1,0 +1,184 @@
+
+
+
+<!-- <div class="col-lg-2"></div>
+<div class="col-lg-4">
+    <form  [formGroup]="registerForm" (ngSubmit)="Register()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Candidate Name</label>
+    <input formControlName="candidateName" type="email" class="form-control">
+     <span class="text-danger"
+          *ngIf="registerForm.controls['candidateName'].touched && registerForm.hasError('required', 'candidateName')">Candidate Name is required</span>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Party</label>
+    <input formControlName="party" type="text" class="form-control">
+         <span class="text-danger"
+          *ngIf="registerForm.controls['party'].touched && registerForm.hasError('required', 'party')">Party Name is required</span>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register Candidate</button>
+</form>
+</div>
+<div class="col-lg-2"></div> -->
+
+
+
+
+<!-- <form action="">
+    <select *ngFor="let users of user" name="" id=""></select>
+</form> -->
+
+
+
+
+
+
+<div class="container big">
+    <div class="row py-5">
+        <!-- <div class="col-lg-2">
+
+            
+        </div> -->
+       
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class=" text-center"></span>Who would you like to vote for as the Nigerian President?</h3>
+                </div>
+                <form [formGroup]="countForm">
+                <div class="panel-body">
+                    <div class="row d-flex" *ngFor="let candidate of users">
+                            <!-- <span class="text-danger"
+          *ngIf="registerForm.controls['count'].touched && registerForm.hasError('required', 'count')">Please choose a candidate</span> -->
+                        <div class="col-md-6">
+                            <div class="well well-sm">
+                                <div class="radior">
+                                    <label>
+                                        <input formControlName="count" [value]="countForm.value.totalVotes" type="checkbox">
+                                        {{candidate.candidateName}}
+                                        <br>
+                                        <span class="party">{{candidate.party}}</span>
+                                         
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            <div class="well well-sm">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        Obi Peter Gregory
+                                    </label>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <button [disabled]="countForm.invalid"  (click)="Count()" type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-ok me-4"></span>Vote</button>
+                    <button routerLink="/view" type="button" class="btn btn-primary btn-sm">
+                        View Result</button>
+                </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+             <form class="mb-3"  [formGroup]="registerForm" (ngSubmit)="Register()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Candidate Name</label>
+    <input formControlName="candidateName" type="email" class="form-control">
+     <span class="text-danger"
+          *ngIf="registerForm.controls['candidateName'].touched && registerForm.hasError('required', 'candidateName')">Candidate Name is required</span>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Party</label>
+    <input formControlName="party" type="text" class="form-control">
+         <span class="text-danger"
+          *ngIf="registerForm.controls['party'].touched && registerForm.hasError('required', 'party')">Party Name is required</span>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register Candidate</button>
+</form>
+
+<div class="table-responsive mt-5">
+            <table class="table table-hover overflow-x" id="example1">
+              <thead class="thead-light fw-bold mt-3">
+                <tr>
+                                    <th class="fw-bold" scope="col"> ID</th>
+                  <th class="fw-bold" scope="col">CANDIDATE NAME</th>
+                  <th class="fw-bold" scope="col">PARTY</th>
+                  <!-- <th class="fw-bold" scope="col">Room ID</th> -->
+
+                  <!-- <th class="fw-bold" scope="col">Check In</th>  -->
+                  <th class="fw-bold" scope="col">COUNT</th> 
+
+
+                </tr>
+              </thead>
+
+              <!-- TABLE BODY STARTS -->
+              <tbody>
+                <!-- <tr *ngFor="let order of orders"> -->
+                <tr *ngFor="let user of users">
+                  <td>
+                    <a class="text-heading font-semibold">
+                      {{ user.id }}
+                    </a>
+                  </td>
+                  <td>
+                    <a class="text-heading font-semibold">
+                      {{ user.candidateName }}
+                    </a>
+                  </td>
+                  <td>
+                    <a class="text-heading font-semibold">
+                       {{user.party }}
+                    </a>
+                  </td>
+                  <td>
+                    <a class="text-heading font-semibold">
+                       {{user.totalVotes }}
+                    </a>
+                  </td>
+
+
+                  
+                  <!-- <td>{{ order.items }}</td> -->
+                                            
+                    <!-- <a href="#" class="bg-light btn-sm btn-neutral ">View</a> -->
+                    <!-- <button
+                      type="button" data-toggle="modal" data-target="#exampleModalCenter1"
+                      class="btn btn-sm btn-square btn-neutral text-danger-hover"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button> -->
+                    <!-- delete Modal -->
+                    <td>
+<div class="modal fade shadow justify-content-center" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center"><i class="bi bi-question-circle-fill"></i></div>
+        <h4 class="modal-title text-center" id="exampleModalCenterTitle">Are you sure you want to delete this order</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" >Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+    </div>
+
